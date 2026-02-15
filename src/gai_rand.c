@@ -96,7 +96,7 @@ void shuffle_addrinfo(struct addrinfo **res, addr_pref_t pref)
 
     /* v4 and v6 addresses are equals, shuffle all */
     if (pref == ADDR_PREF_EQUAL) {
-        struct addrinfo **arr = malloc(n * sizeof(*arr));
+        struct addrinfo **arr = (struct addrinfo **)malloc(n * sizeof(*arr));
         if (!arr)
             return;
 
@@ -125,8 +125,8 @@ void shuffle_addrinfo(struct addrinfo **res, addr_pref_t pref)
             n_other++;
     }
 
-    struct addrinfo **pref_arr  = malloc(n_pref  * sizeof(*pref_arr));
-    struct addrinfo **other_arr = malloc(n_other * sizeof(*other_arr));
+    struct addrinfo **pref_arr  = (struct addrinfo **)malloc(n_pref  * sizeof(*pref_arr));
+    struct addrinfo **other_arr = (struct addrinfo **)malloc(n_other * sizeof(*other_arr));
     if (!pref_arr || !other_arr) {
         free(pref_arr);
         free(other_arr);
